@@ -1,4 +1,4 @@
-# Christie's Web Scraper Data Science Project
+# What Makes Art Valuable: Data Scraping and Analysis of Auction Data
 
 [![Language](https://img.shields.io/badge/Language-Python-blue.svg)](https://www.python.org/)
 [![pandas](https://img.shields.io/badge/-Pandas-150458?style=flat-square&logo=pandas&logoColor=white)](https://pandas.pydata.org/)
@@ -6,23 +6,50 @@
 
 ## Project Overview
 
-This data science project aims to investigate the factors influencing the prices of artworks at auction, focusing on the prestige or popularity of artists and the reliability of auction house estimates. The project involves data collection, cleaning, processing, and visualization.
+This project explores factors influencing artwork prices at major auction houses (Christie's and Sotheby's). Using custom web scrapers built with Python and Selenium, auction data was collected, including artwork details, estimates, and final sale prices. The data was then cleaned and processed using Pandas to analyze trends, particularly the relationship between auction house estimates, artist popularity (approximated via Yahoo search results), and final sale prices.
 
-## Data Collection
+## Key Features
 
-We gathered data from Sotheby's and Christie's auction websites using web scrapers built with Selenium, a Python library for automating web browsers. The scrapers collected URLs for each auction and artwork, along with key features such as price, artist, and estimate price.
+*   **Multi-Stage Web Scraping:** Python scripts utilizing Selenium to navigate dynamic auction sites, collect auction/artwork URLs, and extract specific artwork features (price, artist, estimates, dimensions, etc.).
+*   **Data Cleaning & Processing:** Jupyter Notebooks demonstrating data cleaning techniques with Pandas, including:
+    *   Handling inconsistencies in scraped data.
+    *   Parsing and separating estimate ranges (low/high).
+    *   Standardizing and converting currencies (GBP, EUR, HKD, etc.) to USD.
+    *   Filtering out non-painting/print lots.
+*   **Feature Engineering:**
+    *   Calculation of artist age and determination of living status.
+    *   Creation of binary 'Sold' status based on price data.
+    *   Calculation of estimate accuracy (whether the final price fell below, within, or above the estimate range).
+    *   Integration of artist popularity metric derived from scraping Yahoo search result counts using Requests and BeautifulSoup.
+*   **Exploratory Data Analysis (EDA):** Initial visualizations exploring the relationship between sale prices, estimates (confirming underestimation bias and anchoring effects), and artist popularity.
+*   *(Experimental)* An included notebook explores image classification using Keras/TensorFlow (VGG16), though this feature was not integrated into the final analysis.
 
-## Data Cleaning
+## Key Technologies
 
-The collected data required substantial cleaning, including separating high and low estimate prices, converting all prices to USD, and standardizing names and formats. We also filtered out unwanted art forms.
+*   **Python:** Core programming language.
+*   **Selenium:** Web browser automation and scraping dynamic websites.
+*   **Pandas:** Data manipulation, cleaning, and analysis.
+*   **NumPy:** Numerical operations.
+*   **Requests & BeautifulSoup:** Scraping static content (used for Yahoo search results).
+*   **Jupyter Notebook:** Development environment for scraping, cleaning, and analysis.
+*   **Matplotlib & Seaborn:** Data visualization.
+*   **(Experimental):** Keras / TensorFlow
 
-## Data Processing
+## Key Findings
 
-After data cleaning, we added features to gain insights into artwork pricing. Using Pandas DataFrames, BeautifulSoup, requests libraries, and the Yahoo API, we collected the number of Yahoo search results for each artist as a measure of their popularity. We also created new features, such as artist age, artwork status, and the accuracy of auction house estimates.
+*   A strong correlation was observed between auction house estimates (both low and high) and the final sale price, suggesting a potential anchoring bias effect.
+*   The analysis indicated a tendency for the auction house (Christie's data was primarily used for this part) to underestimate artwork values, with a significant percentage (~54%) selling above the high estimate.
+*   Artist popularity, as approximated by Yahoo search result counts, did not show a strong correlation with final sale prices within this dataset.
 
-## Data Visualization
+## Challenges
 
-We visualized the data to understand auction house estimate bias and correlations between sale prices and estimates. The project primarily focuses on the data and its analysis.
+*   **Data Collection:** Navigating the complexities of Selenium for dynamic websites and handling inconsistencies across different auction/artwork page layouts.
+*   **Data Cleaning:** Significant effort was required to standardize formats, currencies, and filter out irrelevant lots (e.g., furniture).
+*   **Scope:** Difficulty in reliably filtering *only* paintings/prints and excluding medium as a feature might introduce noise into the analysis (e.g., comparing a Picasso print to a painting).
+
+## Usage Note
+
+The web scrapers were developed based on the website structures of Christie's and Sotheby's at the time of the project's creation. Websites change frequently, so these scrapers **will likely require significant updates** to function correctly now. The cleaned data files (`.csv`) are provided for direct analysis.
 
 ## Project Files
 
@@ -48,4 +75,6 @@ We visualized the data to understand auction house estimate bias and correlation
 - [What Makes Art Valuable_ Data Scraping and Exploratory Data Visualizations.pdf](https://github.com/marcusrprojects/What-Makes-Art-Valuable/blob/main/What%20Makes%20Art%20Valuable_%20Data%20Scraping%20and%20Exploratory%20Data%20Visualizations.pdf): The blog post about the project.
 - [relative popularity.ipynb](https://github.com/marcusrprojects/What-Makes-Art-Valuable/blob/main/relative%20popularity.ipynb): Notebook for analyzing artist popularity.
 
-You can explore the code and data for this project by clicking on the links provided above. For detailed insights, please refer to the [full blog post](https://github.com/marcusrprojects/What-Makes-Art-Valuable/blob/main/What%20Makes%20Art%20Valuable_%20Data%20Scraping%20and%20Exploratory%20Data%20Visualizations.pdf).
+## Further Reading
+
+For a more detailed discussion of the methodology, findings, and visualizations, please see the [project blog post PDF](What%20Makes%20Art%20Valuable_%20Data%20Scraping%20and%20Exploratory%20Data%20Visualizations.pdf).
