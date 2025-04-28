@@ -1,5 +1,9 @@
 # Christie's Web Scraper Data Science Project
 
+[![Language](https://img.shields.io/badge/Language-Python-blue.svg)](https://www.python.org/)
+[![pandas](https://img.shields.io/badge/-Pandas-150458?style=flat-square&logo=pandas&logoColor=white)](https://pandas.pydata.org/)
+[![Selenium](https://img.shields.io/badge/-Selenium-43B02A?style=flat-square&logo=selenium&logoColor=white)](https://www.selenium.dev/)
+
 ## Project Overview
 
 This data science project aims to investigate the factors influencing the prices of artworks at auction, focusing on the prestige or popularity of artists and the reliability of auction house estimates. The project involves data collection, cleaning, processing, and visualization.
